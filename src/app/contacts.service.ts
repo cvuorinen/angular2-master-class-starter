@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Contact } from './models/contact';
+import { API_ENDPOINT } from './app.tokens';
 
 @Injectable()
 export class ContactsService {
-  private API_ENDPOINT = 'http://localhost:4201/api';
-  constructor(private http: Http) {}
+  constructor(
+      private http: Http,
+      @Inject(API_ENDPOINT) private apiEndpoint: string
+  ) {}
 
   public getContacts(): Observable<Contact[]> {
     return this.fetchContacts('/contacts')
@@ -19,13 +22,13 @@ export class ContactsService {
   }
 
   public updateContact(contact: Contact): Observable<Contact> {
-      return this.http.put(`${this.API_ENDPOINT}/contacts/${contact.id}`, contact)
+      return this.http.put(`${this.apiEndpoint}/contacts/${contact.id}`, contact)
           .map(result => result.json())
           .map(data => data.item);
   }
 
   private fetchContacts(apiCall: string): Observable<any> {
-    return this.http.get(this.API_ENDPOINT + apiCall)
+    return this.http.get(this.apiEndpoint + apiCall)
         .map(result => result.json());
   }
 }

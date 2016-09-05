@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OpaqueToken } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -11,6 +11,7 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import { API_ENDPOINT } from './app.tokens';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,16 @@ import { ContactsEditorComponent } from './contacts-editor/contacts-editor.compo
     ContactsEditorComponent
   ],
   imports: [
-      BrowserModule,
-      HttpModule,
-      FormsModule,
-      RouterModule.forRoot(ContactsAppRoutes)
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    RouterModule.forRoot(ContactsAppRoutes)
   ],
   bootstrap: [ContactsAppComponent],
-  providers: [ContactsService]
+  providers: [
+    ContactsService,
+    { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' }
+  ]
 })
 export class ContactsModule {
 
