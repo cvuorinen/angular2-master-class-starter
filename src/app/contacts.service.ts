@@ -9,8 +9,11 @@ export class ContactsService {
 
   constructor() { }
 
-  getContacts() {
+  public getContacts() {
     return this.contacts;
   }
 
+  public getContact(id: number): Contact {
+    return this.contacts.find(contact => contact.id === id);
+  }
 }
