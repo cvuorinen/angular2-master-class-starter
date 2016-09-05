@@ -18,6 +18,12 @@ export class ContactsService {
         .map(data => data.item);
   }
 
+  public updateContact(contact: Contact): Observable<Contact> {
+      return this.http.put(`${this.API_ENDPOINT}/contacts/${contact.id}`, contact)
+          .map(result => result.json())
+          .map(data => data.item);
+  }
+
   private fetchContacts(apiCall: string): Observable<any> {
     return this.http.get(this.API_ENDPOINT + apiCall)
         .map(result => result.json());
