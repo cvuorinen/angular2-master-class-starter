@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
 
@@ -8,7 +9,7 @@ import { Contact } from '../models/contact';
   styleUrls: ['contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-  public contacts: Contact[];
+  public contacts: Observable<Contact[]>;
 
   constructor(private contactsService: ContactsService) { }
 
