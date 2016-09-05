@@ -1,4 +1,7 @@
 <trm-contacts-header></trm-contacts-header>
-<h1>
-  {{title}}
-</h1>
+<ul class="collection">
+  <li class="collection-item avatar">
+    <img [src]="contact.image" alt="" class="circle">
+    <span class="title">{{ contact.name }}</span>
+  </li>
+</ul>
