@@ -36,7 +36,7 @@ export const CONTACT_DATA = [
         phone: '+49 000 333',
         birthday: '1981-03-31',
         website: '',
-        image: '/assets/images/3.jpg',
+        image: '/assets/images/2.jpg',
         address: {
           street: 'Who Cares Street 42',
           zip: '65222',
@@ -81,7 +81,7 @@ export const CONTACT_DATA = [
         phone: '',
         birthday: '',
         website: '',
-        image: '/assets/images/6.jpg',
+        image: '/assets/images/7.jpg',
         address: {
           street: '6503 tara street',
           zip: '43378',
@@ -96,7 +96,7 @@ export const CONTACT_DATA = [
         phone: '',
         birthday: '',
         website: '',
-        image: '/assets/images/7.jpg',
+        image: '/assets/images/6.jpg',
         address: {
           street: '6554 park lane',
           zip: '43378',
@@ -126,7 +126,7 @@ export const CONTACT_DATA = [
         phone: '',
         birthday: '',
         website: '',
-        image: '/assets/images/9.jpg',
+        image: '/assets/images/10.jpg',
         address: {
           street: '8436 tara street',
           zip: '59949',
@@ -141,7 +141,7 @@ export const CONTACT_DATA = [
         phone: '',
         birthday: '',
         website: '',
-        image: '/assets/images/10.jpg',
+        image: '/assets/images/9.jpg',
         address: {
           street: '2523 park road',
           zip: '59949',
@@ -162,6 +162,21 @@ export const CONTACT_DATA = [
           zip: '30165',
           city: 'Galway',
           country: 'London'
+        }
+    },
+    {
+        id: 11,
+        name: 'Boaty McBoatface',
+        email: '',
+        phone: '',
+        birthday: '',
+        website: '',
+        image: '/assets/images/boaty.jpg',
+        address: {
+            street: '63 River Thames',
+            zip: '84628',
+            city: 'London',
+            country: 'United Kingdom'
         }
     }
 ];
