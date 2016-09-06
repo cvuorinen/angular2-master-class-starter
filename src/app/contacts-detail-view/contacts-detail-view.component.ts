@@ -20,12 +20,13 @@ export class ContactsDetailViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.contactsService.getContact(
-        Number(this.route.snapshot.params['id'])
-    ).subscribe(contact => {
-      this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, contact.name);
+    this.route.params.subscribe(params => {
+      this.contactsService.getContact(params['id'])
+          .subscribe(contact => {
+            this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, contact.name);
 
-      this.contact = contact;
+            this.contact = contact;
+          });
     });
   }
 

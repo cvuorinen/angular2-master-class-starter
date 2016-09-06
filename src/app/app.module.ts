@@ -16,6 +16,8 @@ import { API_ENDPOINT } from './app.tokens';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { ContactsListViewComponent } from './contacts-list-view/contacts-list-view.component';
 import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-editor-view.component';
+import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-edi
     ContactsEditorComponent,
     ContactsDetailViewComponent,
     ContactsListViewComponent,
-    ContactsEditorViewComponent
+    ContactsEditorViewComponent,
+    ContactsDashboardComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
