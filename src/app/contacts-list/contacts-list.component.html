@@ -4,7 +4,7 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">search</i>
         <input type="text" id="search"
-               (input)="search($event.target.value)">
+               (input)="term$.next($event.target.value)">
         <label class="active" for="search">Search</label>
       </div>
     </div>
