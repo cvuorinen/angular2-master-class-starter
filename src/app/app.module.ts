@@ -12,7 +12,7 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
-import { API_ENDPOINT } from './app.tokens';
+import { API_ENDPOINT, CONFIRM_NAVIGATION_GUARD } from './app.tokens';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { ContactsListViewComponent } from './contacts-list-view/contacts-list-view.component';
 import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-editor-view.component';
@@ -43,7 +43,13 @@ import { AboutComponent } from './about/about.component';
     ContactsService,
     EventBusService,
     Title,
-    { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' }
+    { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
+    {
+      provide: CONFIRM_NAVIGATION_GUARD,
+      useValue: () => {
+        window.confirm('Navigate away without saving?')
+      }
+    }
   ]
 })
 export class ContactsModule {

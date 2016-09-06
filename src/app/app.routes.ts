@@ -3,6 +3,7 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
 import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-editor-view.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
+import { CONFIRM_NAVIGATION_GUARD } from './app.tokens';
 
 export const ContactsAppRoutes: Routes = [
     {
@@ -11,7 +12,8 @@ export const ContactsAppRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'contacts/0' },
             { path: 'contacts/:id', component: ContactsDetailViewComponent },
-            { path: 'contacts/:id/edit', component: ContactsEditorViewComponent },
+            { path: 'contacts/:id/edit', component: ContactsEditorViewComponent,
+                canDeactivate: [CONFIRM_NAVIGATION_GUARD]},
         ]
     },
     { path: 'about', component: AboutComponent },
