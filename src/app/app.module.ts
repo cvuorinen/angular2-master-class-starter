@@ -46,8 +46,12 @@ import { AboutComponent } from './about/about.component';
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
     {
       provide: CONFIRM_NAVIGATION_GUARD,
-      useValue: () => {
-        window.confirm('Navigate away without saving?')
+      useValue: (component) => {
+        if (component.warnOnClose) {
+          return window.confirm('Navigate away without saving?');
+        }
+
+        return true;
       }
     }
   ]

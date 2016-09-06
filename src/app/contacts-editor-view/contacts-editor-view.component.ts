@@ -11,6 +11,7 @@ import { EventBusService } from '../event-bus.service';
 })
 export class ContactsEditorViewComponent implements OnInit {
   public contact: Contact = <Contact>{ address: {}};
+  public warnOnClose = true;
 
   constructor(
       private contactsService: ContactsService,
@@ -35,6 +36,9 @@ export class ContactsEditorViewComponent implements OnInit {
 
   public saveContact(contact: Contact) {
     this.contactsService.updateContact(contact)
-        .subscribe(() => this.goBack(contact));
+        .subscribe(() => {
+          this.warnOnClose = false;
+          this.goBack(contact);
+        });
   }
 }
