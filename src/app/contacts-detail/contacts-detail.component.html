@@ -43,9 +43,9 @@
         </fieldset>
       </div>
       <div class="card-action">
-        <a class="btn" routerLink="/">Go Back</a>
+        <a class="btn" (click)="back.emit()">Go Back</a>
         <a class="btn" *ngIf="contact"
-           [routerLink]="['edit']">Edit</a>
+           (click)="edit.emit(contact)">Edit</a>
       </div>
     </div>
   </div>

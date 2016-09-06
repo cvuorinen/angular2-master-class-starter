@@ -12,6 +12,7 @@ import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { API_ENDPOINT } from './app.tokens';
+import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { API_ENDPOINT } from './app.tokens';
     ContactsHeaderComponent,
     ContactsListComponent,
     ContactsDetailComponent,
-    ContactsEditorComponent
+    ContactsEditorComponent,
+    ContactsDetailViewComponent
   ],
   imports: [
     BrowserModule,
