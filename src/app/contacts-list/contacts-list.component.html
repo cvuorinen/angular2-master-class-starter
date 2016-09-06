@@ -4,7 +4,7 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">search</i>
         <input type="text" id="search"
-               (input)="term$.next($event.target.value)">
+               (input)="search.emit($event.target.value)">
         <label class="active" for="search">Search</label>
       </div>
     </div>
@@ -13,7 +13,7 @@
 <ul class="collection">
   <li class="collection-item avatar"
       *ngFor="let contact of contacts | async">
-    <a [routerLink]="['/contacts', contact.id]">
+    <a (click)="view.emit(contact)">
       <img [src]="contact.image" alt="" class="circle">
       <span class="title">{{ contact.name }}</span>
     </a>

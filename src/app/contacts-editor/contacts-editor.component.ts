@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ContactsService } from '../contacts.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Contact } from '../models/contact';
 
 @Component({
@@ -8,31 +6,10 @@ import { Contact } from '../models/contact';
   templateUrl: 'contacts-editor.component.html',
   styleUrls: ['contacts-editor.component.css']
 })
-export class ContactsEditorComponent implements OnInit {
-  public contact: Contact = <Contact>{ address: {}};
+export class ContactsEditorComponent {
+  @Input() public contact: Contact;
+  @Output() public save = new EventEmitter<Contact>();
+  @Output() public cancel = new EventEmitter<void>();
 
-  constructor(
-      private contactsService: ContactsService,
-      private router: Router,
-      private route: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
-    this.contactsService.getContact(
-        this.route.snapshot.params['id']
-    ).subscribe(contact => {
-      this.contact = contact;
-    });
-  }
-
-  public cancel(contact: Contact) {
-    this.router.navigate(['/contacts', contact.id]);
-  }
-
-  public save(contact: Contact) {
-    this.contactsService.updateContact(contact)
-        .subscribe(() => {
-          this.router.navigate(['/contacts', contact.id]);
-        });
-  }
+  constructor() { }
 }

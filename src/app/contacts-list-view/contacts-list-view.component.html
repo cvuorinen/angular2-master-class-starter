@@ -1,0 +1,4 @@
+<trm-contacts-list [contacts]="contacts"
+                   (search)="term$.next($event)"
+                   (view)="navigateToDetails($event)">
+</trm-contacts-list>
