@@ -6,7 +6,7 @@ import { Contact } from '../models/contact';
 @Component({
   selector: 'trm-contacts-list',
   templateUrl: 'contacts-list.component.html',
-  styleUrls: ['contacts-list.component.css']
+  styleUrls: ['contacts-list.component.scss']
 })
 export class ContactsListComponent implements OnInit {
   public contacts: Observable<Contact[]>;
@@ -15,5 +15,9 @@ export class ContactsListComponent implements OnInit {
 
   ngOnInit() {
     this.contacts = this.contactsService.getContacts();
+  }
+
+  public search(term: string) {
+    this.contacts = this.contactsService.searchContacts(term);
   }
 }

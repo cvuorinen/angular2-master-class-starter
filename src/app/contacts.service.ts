@@ -31,4 +31,9 @@ export class ContactsService {
     return this.http.get(this.apiEndpoint + apiCall)
         .map(result => result.json());
   }
+
+  public searchContacts(term: string): Observable<Contact[]> {
+      return this.fetchContacts(`/search?text=${term}`)
+          .map(data => data.items);
+  }
 }
