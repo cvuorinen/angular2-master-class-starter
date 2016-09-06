@@ -1,19 +1,24 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx';
 import { Contact } from './models/contact';
 import { API_ENDPOINT } from './app.tokens';
 
 @Injectable()
 export class ContactsService {
+  private list$ = new Subject<Contact[]>();
+
   constructor(
       private http: Http,
       @Inject(API_ENDPOINT) private apiEndpoint: string
   ) {}
 
   public getContacts(): Observable<Contact[]> {
-    return this.fetchContacts('/contacts')
-        .map(data => data.items);
+    this.fetchContacts('/contacts')
+        .map(data => data.items)
+        .subscribe(items => this.list$.next(items));
+
+    return this.list$.asObservable();
   }
 
   public getContact(id: number | string): Observable<Contact> {
@@ -22,9 +27,14 @@ export class ContactsService {
   }
 
   public updateContact(contact: Contact): Observable<Contact> {
-      return this.http.put(`${this.apiEndpoint}/contacts/${contact.id}`, contact)
+      const update = this.http.put(`${this.apiEndpoint}/contacts/${contact.id}`, contact)
           .map(result => result.json())
-          .map(data => data.item);
+          .map(data => data.item)
+          .share();
+
+    update.subscribe(() => this.getContacts());
+
+    return update;
   }
 
   private fetchContacts(apiCall: string): Observable<any> {
