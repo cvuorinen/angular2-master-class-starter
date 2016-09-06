@@ -13,8 +13,9 @@
 </nav>
 <ul class="collection">
   <li class="collection-item avatar"
-      *ngFor="let contact of contacts | async">
-    <a (click)="view.emit(contact)">
+      *ngFor="let contact of contacts | async"
+      (click)="view.emit(contact)">
+    <a>
       <img [src]="contact.image" alt="" class="circle">
       <span class="title">{{ contact.name }}</span>
     </a>
