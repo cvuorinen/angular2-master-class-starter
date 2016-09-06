@@ -7,6 +7,7 @@ import { ContactsAppComponent } from './contacts.component';
 //import { ContactsHeaderComponent } from './contacts-header/contacts-header.component';
 import { ContactsHeaderComponent } from './contacts-header'; // shorthand works because exported in contacts-header/index.ts
 import { ContactsService } from './contacts.service';
+import { EventBusService } from './event-bus.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
@@ -36,6 +37,7 @@ import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-edi
   bootstrap: [ContactsAppComponent],
   providers: [
     ContactsService,
+    EventBusService,
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' }
   ]
 })

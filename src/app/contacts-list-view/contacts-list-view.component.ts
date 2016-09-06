@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs/Rx';
 import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
+import { EventBusService } from '../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-list-view',
@@ -15,10 +16,13 @@ export class ContactsListViewComponent implements OnInit {
 
   constructor(
       private contactsService: ContactsService,
+      private eventBus: EventBusService,
       private router: Router
   ) { }
 
   ngOnInit() {
+    this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, 'Contacts');
+
     this.contacts = Observable.merge(
         this.contactsService.getContacts().takeUntil(this.term$),
         this.contactsService.searchContacts(this.term$)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
+import { EventBusService } from '../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-detail-view',
@@ -13,6 +14,7 @@ export class ContactsDetailViewComponent implements OnInit {
 
   constructor(
       private contactsService: ContactsService,
+      private eventBus: EventBusService,
       private router: Router,
       private route: ActivatedRoute
   ) { }
@@ -21,7 +23,9 @@ export class ContactsDetailViewComponent implements OnInit {
     this.contactsService.getContact(
         Number(this.route.snapshot.params['id'])
     ).subscribe(contact => {
-      this.contact = contact
+      this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, contact.name);
+
+      this.contact = contact;
     });
   }
 
