@@ -17,16 +17,9 @@ export class ContactsListComponent implements OnInit {
   constructor(private contactsService: ContactsService) { }
 
   ngOnInit() {
-    //this.contacts = this.contactsService.getContacts();
-
-    this.term$
-        .debounceTime(400)
-        .distinctUntilChanged()
-        .startWith('')
-        .subscribe(term => this.search(term));
-  }
-
-  private search(term: string) {
-    this.contacts = this.contactsService.searchContacts(term);
+    this.contacts = Observable.merge(
+        this.contactsService.getContacts().takeUntil(this.term$),
+        this.contactsService.searchContacts(this.term$)
+    );
   }
 }

@@ -32,8 +32,12 @@ export class ContactsService {
         .map(result => result.json());
   }
 
-  public searchContacts(term: string): Observable<Contact[]> {
-      return this.fetchContacts(`/search?text=${term}`)
+  public searchContacts(terms: Observable<string>, debounceMs = 400): Observable<Contact[]> {
+      return terms
+          .debounceTime(debounceMs)
+          .distinctUntilChanged()
+          .switchMap(term => this.fetchContacts(`/search?text=${term}`))
           .map(data => data.items);
   }
+
 }
