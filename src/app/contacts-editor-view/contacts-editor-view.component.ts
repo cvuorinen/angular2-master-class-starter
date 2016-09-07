@@ -21,13 +21,13 @@ export class ContactsEditorViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.contactsService.getContact(
-        this.route.snapshot.params['id']
-    ).subscribe(contact => {
-      this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, `Editing: ${contact.name}`);
+    this.route.data
+        .map(data => data['contact'])
+        .subscribe(contact => {
+          this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, `Editing: ${contact.name}`);
 
-      this.contact = contact;
-    });
+          this.contact = contact;
+        });
   }
 
   public goBack(contact: Contact) {

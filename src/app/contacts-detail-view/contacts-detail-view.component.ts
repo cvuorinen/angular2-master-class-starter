@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
 import { EventBusService } from '../event-bus.service';
 
@@ -13,21 +12,19 @@ export class ContactsDetailViewComponent implements OnInit {
   public contact: Contact;
 
   constructor(
-      private contactsService: ContactsService,
       private eventBus: EventBusService,
       private router: Router,
       private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.contactsService.getContact(params['id'])
-          .subscribe(contact => {
-            this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, contact.name);
+    this.route.data
+        .map(data => data['contact'])
+        .subscribe(contact => {
+          this.eventBus.emit(EventBusService.APP_TITLE_CHANGE, contact.name);
 
-            this.contact = contact;
-          });
-    });
+          this.contact = contact;
+        });
   }
 
   public navigateToEditor(contact: Contact) {

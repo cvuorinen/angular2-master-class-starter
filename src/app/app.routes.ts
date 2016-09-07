@@ -4,6 +4,7 @@ import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-edi
 import { AboutComponent } from './about/about.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { CONFIRM_NAVIGATION_GUARD } from './app.tokens';
+import { ContactsResolver } from './shared/contacts.resolver';
 
 export const ContactsAppRoutes: Routes = [
     {
@@ -11,9 +12,21 @@ export const ContactsAppRoutes: Routes = [
         component: ContactsDashboardComponent,
         children: [
             { path: '', redirectTo: 'contacts/0' },
-            { path: 'contacts/:id', component: ContactsDetailViewComponent },
-            { path: 'contacts/:id/edit', component: ContactsEditorViewComponent,
-                canDeactivate: [CONFIRM_NAVIGATION_GUARD]},
+            {
+                path: 'contacts/:id',
+                component: ContactsDetailViewComponent,
+                resolve: {
+                    contact: ContactsResolver
+                }
+            },
+            {
+                path: 'contacts/:id/edit',
+                component: ContactsEditorViewComponent,
+                resolve: {
+                    contact: ContactsResolver
+                },
+                canDeactivate: [CONFIRM_NAVIGATION_GUARD]
+            },
         ]
     },
     { path: 'about', component: AboutComponent },

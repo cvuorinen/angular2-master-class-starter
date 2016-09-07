@@ -18,6 +18,7 @@ import { ContactsListViewComponent } from './contacts-list-view/contacts-list-vi
 import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-editor-view.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
+import { ContactsResolver } from './shared/contacts.resolver';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AboutComponent } from './about/about.component';
   providers: [
     ContactsService,
     EventBusService,
+    ContactsResolver,
     Title,
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
     {
