@@ -19,6 +19,7 @@ import { ContactsEditorViewComponent } from './contacts-editor-view/contacts-edi
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsResolver } from './shared/contacts.resolver';
+import { ZippyComponent } from './zippy/zippy.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ContactsResolver } from './shared/contacts.resolver';
     ContactsListViewComponent,
     ContactsEditorViewComponent,
     ContactsDashboardComponent,
-    AboutComponent
+    AboutComponent,
+    ZippyComponent
   ],
   imports: [
     BrowserModule,

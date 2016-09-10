@@ -1,0 +1,9 @@
+<div class="zippy">
+  <a class="zippy__title waves-effect waves-teal btn-flat"
+       (click)="open = !open; toggle.emit(open);">
+    {{ open ? '&#x025BE;' : '&#x025B8;' }} {{ title }}
+  </a>
+  <div class="zippy__content" *ngIf="open">
+    <ng-content></ng-content>
+  </div>
+</div>
