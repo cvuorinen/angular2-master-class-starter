@@ -22,6 +22,7 @@ import { ContactsResolver } from './shared/contacts.resolver';
 import { ZippyComponent } from './zippy/zippy.component';
 import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { ContactsCreatorViewComponent } from './contacts-creator-view/contacts-creator-view.component';
+import { EmailValidator } from './email-validator.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ContactsCreatorViewComponent } from './contacts-creator-view/contacts-c
     AboutComponent,
     ZippyComponent,
     ContactsCreatorComponent,
-    ContactsCreatorViewComponent
+    ContactsCreatorViewComponent,
+    EmailValidator
   ],
   imports: [
     BrowserModule,

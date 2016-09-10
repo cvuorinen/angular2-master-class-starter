@@ -8,7 +8,7 @@
             <i class="material-icons prefix">account_circle</i>
             <input id="name" name="name" class="validate"
                    ngModel #name="ngModel" required minlength="3"
-                   [ngClass]="{'invalid': form.invalid && form.dirty}">
+                   [ngClass]="{'invalid': name.invalid && form.dirty}">
             <label class="active" for="name">Name</label>
           </div>
           <div class="errors red-text">
@@ -22,8 +22,13 @@
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">email</i>
-            <input id="email" name="email" class="validate" ngModel>
+            <input id="email" name="email" class="validate"
+                   ngModel #email="ngModel" validateEmail
+                   [ngClass]="{'invalid': email.invalid && email.dirty}">
             <label class="active" for="email">Email</label>
+          </div>
+          <div class="errors red-text">
+            <div *ngIf="email.value?.length && email.errors?.validateEmail">Invalid email address.</div>
           </div>
         </div>
         <div class="row">
