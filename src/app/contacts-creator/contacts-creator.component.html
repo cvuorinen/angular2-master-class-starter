@@ -63,8 +63,13 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="country" type="text" name="country" class="validate" ngModel>
-              <label class="active" for="country">Country</label>
+              <label class="input-select-label" for="country">Country</label>
+              <select id="country" name="country" ngModel>
+                <option *ngFor="let country of countries"
+                        [value]="country.name">
+                  {{ country.name }}
+                </option>
+              </select>
             </div>
           </div>
         </fieldset>
