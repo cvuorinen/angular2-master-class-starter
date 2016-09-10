@@ -50,4 +50,15 @@ export class ContactsService {
           .map(data => data.items);
   }
 
+  public addContact(contact: Contact): Observable<Contact> {
+    const create = this.http.post(`${this.apiEndpoint}/contacts`, contact)
+        .map(result => result.json())
+        .map(data => data.item)
+        .share();
+
+    create.subscribe(() => this.getContacts());
+
+    return create;
+  }
+
 }
