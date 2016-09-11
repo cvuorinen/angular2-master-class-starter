@@ -1,83 +1,81 @@
 <div class="row">
   <form class="col s12 m7" novalidate
-        #form="ngForm" (ngSubmit)="save.emit(form.value)">
+        [formGroup]="form" (ngSubmit)="submit()">
     <div class="card">
       <div class="card-content grey-text text-darken-4">
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">account_circle</i>
-            <input id="name" name="name" class="validate"
-                   ngModel #name="ngModel" required minlength="3"
-                   [ngClass]="{'invalid': name.invalid && form.dirty}">
+            <input id="name" formControlName="name" class="validate"
+                   [ngClass]="{'invalid': isInvalid(nameField)}">
             <label class="active" for="name">Name</label>
           </div>
           <div class="errors red-text">
-              <div *ngIf="form.dirty && name.errors?.required">This field is required.</div>
-              <div *ngIf="form.dirty && name.errors?.minlength">
-                  Minimum length for this field is {{ name.errors.minlength.requiredLength }},
-                  current length: {{ name.errors.minlength.actualLength }}
+              <div *ngIf="nameField.touched && nameField.errors?.required">This field is required.</div>
+              <div *ngIf="nameField.touched && nameField.errors?.minlength">
+                  Minimum length for this field is {{ nameField.errors.minlength.requiredLength }},
+                  current length: {{ nameField.errors.minlength.actualLength }}
               </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">email</i>
-            <input id="email" name="email" class="validate"
-                   ngModel #email="ngModel" validateEmail
-                   [ngClass]="{'invalid': email.invalid && email.dirty}">
+            <input id="email" formControlName="email" class="validate"
+                   [ngClass]="{'invalid': isInvalid(emailField)}">
             <label class="active" for="email">Email</label>
           </div>
           <div class="errors red-text">
-            <div *ngIf="email.value?.length && email.errors?.validateEmail">Invalid email address.</div>
+            <div *ngIf="emailField.touched && emailField.errors?.validateEmail">Invalid email address.</div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">phone</i>
-            <input id="phone" name="phone" class="validate" ngModel>
+            <input id="phone" formControlName="phone" class="validate">
             <label class="active" for="phone">Phone</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">cake</i>
-            <input id="birthday" type="date" name="birthday" class="validate" ngModel>
+            <input id="birthday" type="date" formControlName="birthday" class="validate">
             <label class="active" for="birthday">Birthday</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">public</i>
-            <input id="website" name="website" class="validate" ngModel>
+            <input id="website" formControlName="website" class="validate">
             <label class="active" for="website">Website</label>
           </div>
         </div>
-        <fieldset ngModelGroup="address">
+        <fieldset formGroupName="address">
           <legend><i class="material-icons prefix">location_city</i> Address</legend>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="street" type="text" name="street" class="validate" ngModel>
+              <input id="street" type="text" formControlName="street" class="validate">
               <label class="active" for="street">Street</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="zip" type="text" name="zip" class="validate" ngModel>
+              <input id="zip" type="text" formControlName="zip" class="validate">
               <label class="active" for="zip">Zipcode</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="city" name="city" type="text" class="validate" ngModel>
+              <input id="city" formControlName="city" type="text" class="validate">
               <label class="active" for="city">City</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <label class="input-select-label" for="country">Country</label>
-              <select id="country" name="country" ngModel>
+              <select id="country" formControlName="country">
                 <option *ngFor="let country of countries"
                         [value]="country.name">
                   {{ country.name }}
@@ -89,8 +87,7 @@
       </div>
       <div class="card-action">
         <a class="btn" (click)="cancel.emit()">Cancel</a>
-        <button type="submit" class="btn"
-                [disabled]="form.invalid">
+        <button type="submit" class="btn">
             Save
         </button>
       </div>

@@ -1,6 +1,5 @@
 import { Directive } from '@angular/core';
-import { Control } from '@angular/common';
-import { NG_VALIDATORS } from '@angular/forms';
+import { NG_VALIDATORS, AbstractControl } from '@angular/forms';
 
 @Directive({
   selector: '[validateEmail][ngModel]',
@@ -14,14 +13,14 @@ import { NG_VALIDATORS } from '@angular/forms';
 })
 export class EmailValidator {
 
-  public static validateEmail(c: Control) {
-    if (!c.value) {
+  public static validateEmail(control: AbstractControl) {
+    if (!control.value) {
       return null;
     }
 
     const emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
-    if (!emailRegex.test(c.value)) {
+    if (!emailRegex.test(control.value)) {
       return {
         validateEmail: { valid: false }
       };

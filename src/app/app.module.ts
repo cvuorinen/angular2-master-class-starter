@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactsAppComponent } from './contacts.component';
 //import { ContactsHeaderComponent } from './contacts-header/contacts-header.component';
@@ -45,6 +45,7 @@ import { EmailValidator } from './email-validator.directive';
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ContactsAppRoutes)
   ],
   bootstrap: [ContactsAppComponent],
