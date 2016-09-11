@@ -61,4 +61,10 @@ export class ContactsService {
     return create;
   }
 
+  public isEmailAvailable(email): Observable<boolean> {
+    return this.http.get(this.apiEndpoint + `/check-email?email=${email}`)
+        .map(result => result.json())
+        .map(response => !!(response['msg'] && response['msg'] === 'AVAILABLE'));
+  }
+
 }

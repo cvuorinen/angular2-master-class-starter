@@ -27,6 +27,9 @@
           </div>
           <div class="errors red-text">
             <div *ngIf="emailField.touched && emailField.errors?.validateEmail">Invalid email address.</div>
+            <div *ngIf="emailField.touched && emailField.errors?.checkEmailAvailability">
+                Email address already in use.
+            </div>
           </div>
         </div>
         <div class="row">
