@@ -1,24 +1,20 @@
-import { Directive } from '@angular/core';
-import { NG_VALIDATORS, AbstractControl, AsyncValidatorFn, NG_ASYNC_VALIDATORS } from '@angular/forms';
-import { ContactsService } from './contacts.service';
-import { Observable } from 'rxjs/Rx';
+import { Directive, forwardRef } from '@angular/core';
+import { NG_VALIDATORS, AbstractControl, Validator } from '@angular/forms';
 
 @Directive({
   selector: '[validateEmail][ngModel]',
   providers: [
     {
       provide: NG_VALIDATORS,
-      useValue: EmailValidator.validateEmail,
-      multi: true
-    },
-    {
-      provide: NG_ASYNC_VALIDATORS,
-      useValue: EmailValidator.checkEmailAvailability,
+      useExisting: forwardRef(() => EmailValidator),
       multi: true
     }
   ]
 })
-export class EmailValidator {
+export class EmailValidator implements Validator {
+  public validate(c: AbstractControl): {} {
+    return EmailValidator.validateEmail(c);
+  }
 
   public static validateEmail(control: AbstractControl) {
     if (!control.value) {
@@ -35,16 +31,4 @@ export class EmailValidator {
 
     return null;
   }
-
-  public static checkEmailAvailability(contactsServce: ContactsService): AsyncValidatorFn {
-    return (control: AbstractControl) => {
-        if (!control.value) {
-            return Observable.of(null);
-        }
-
-        return contactsServce.isEmailAvailable(control.value)
-            .map(valid => valid ? null : { checkEmailAvailability: { valid: false } });
-    };
-  }
-
 }

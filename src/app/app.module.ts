@@ -23,6 +23,7 @@ import { ZippyComponent } from './zippy/zippy.component';
 import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { ContactsCreatorViewComponent } from './contacts-creator-view/contacts-creator-view.component';
 import { EmailValidator } from './email-validator.directive';
+import { EmailAvailabilityValidator } from './email-availability-validator.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EmailValidator } from './email-validator.directive';
     ZippyComponent,
     ContactsCreatorComponent,
     ContactsCreatorViewComponent,
-    EmailValidator
+    EmailValidator,
+    EmailAvailabilityValidator
   ],
   imports: [
     BrowserModule,

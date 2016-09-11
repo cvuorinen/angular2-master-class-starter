@@ -3,7 +3,6 @@ import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/fo
 import { Contact } from '../models/contact';
 import { COUNTRIES_DATA } from '../data/countries-data';
 import { EmailValidator } from '../email-validator.directive';
-import { ContactsService } from '../contacts.service';
 
 @Component({
   selector: 'trm-contacts-creator',
@@ -21,8 +20,7 @@ export class ContactsCreatorComponent implements OnInit {
   public countries = COUNTRIES_DATA;
 
   constructor(
-      private formBuilder: FormBuilder,
-      private contactService: ContactsService
+      private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -33,8 +31,6 @@ export class ContactsCreatorComponent implements OnInit {
           ]],
           email: ['', [
               EmailValidator.validateEmail
-          ], [
-              EmailValidator.checkEmailAvailability(this.contactService)
           ]],
           phone: '',
           birthday: '',

@@ -22,6 +22,7 @@
           <div class="input-field col s12">
             <i class="material-icons prefix">email</i>
             <input id="email" formControlName="email" class="validate"
+                   checkEmailAvailability
                    [ngClass]="{'invalid': isInvalid(emailField)}">
             <label class="active" for="email">Email</label>
           </div>
